@@ -188,5 +188,7 @@ if(isset($_POST["delete"])){
         });
 
     });
+
+    
 </script>
 
