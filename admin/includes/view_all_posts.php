@@ -97,8 +97,7 @@ $query = "SELECT posts.post_id, posts.post_creator, posts.post_title, posts.post
 $query .= "categories.cat_id, categories.cat_title ";
 $query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categories.cat_id WHERE posts.post_creator='{$_SESSION['firstname']}' ORDER BY post_id DESC";
             }
-                $selectAllPosts = mysqli_query($conn, $query);
-                $post_row_num = mysqli_num_rows($selectAllPosts);
+                $post_row_num = $my_db->query($query);
                 if($post_row_num == NULL){
                     echo "<script>alert('You do not have any post!!');</script>";
                     //echo "";
@@ -186,6 +185,8 @@ if(isset($_POST["delete"])){
 
            $("#myModal").modal('show');
         });
+
+        
 
     });
 
