@@ -84,7 +84,7 @@
                             <?php echo $post_title; ?></a>      
                         </h2>
                         <p class="lead">
-                            by <a href="/cms/author_posts?author=<?php echo $post_creator; ?> 
+                            by <a href="/cms_oops/author_posts?author=<?php echo $post_creator; ?> 
                             &p_id=<?php echo $post_id; ?>">
                             <?php echo $post_creator; ?></a>
                         </p>
@@ -92,14 +92,14 @@
                             <?php echo $post_date; ?>
                         </p>
                         <hr>
-                        <div class = "img-placeholder"><img class="img-responsive" src="/cms/images/<?php echo imagePlaceholder($post_image); ?>" alt=""></div>
+                        <div class = "img-placeholder"><img class="img-responsive" src="/cms_oops/images/<?php echo imagePlaceholder($post_image); ?>" alt=""></div>
                         <hr>
                         <p><?php echo $post_content; ?><h4>
                         <?php if(isLoggedIn()){ ?>
                             <p class="pull-right"><a class ="<?php echo userLikedThisPost($the_post_id) ? 'unlike' : 'like' ?>" href=""><i class='bi bi-hand-thumbs-up-fill'></i><?php echo userLikedThisPost($the_post_id) ? ' Unlike' : ' Like' ?></a><br><br>
                             Like: <?php getPostLikes($the_post_id);?>
                         <?php }else{?>
-                            <p class="pull-right">You need to <a href="/cms/login">Login</a> to like <br><br>
+                            <p class="pull-right">You need to <a href="/cms_oops/login">Login</a> to like <br><br>
                             Like: <?php getPostLikes($the_post_id);?></p>
                         <?php } ?>
                         </h4></p> 

@@ -32,6 +32,11 @@ class Dbo extends ConfigDB{
         $escaped_string = $this->conn->real_escape_string($string);
         return $escaped_string;
     }
+
+    public function recordCount($table){
+        $select_all = $this->query("SELECT * FROM " . $table);
+        return $select_all->num_rows;
+    }
 }
 
 $my_db = new Dbo();

@@ -6,27 +6,26 @@ if(isset($_POST['checkBoxArray'])){
         $bulk_options = $_POST['bulk_options'];
         switch($bulk_options){
             case 'published':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$posts_id}";
-                $update_status_as_published = mysqli_query($conn, $query);
-                confirmQuery($update_status_as_published);
+                $my_db->query("UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$posts_id}");
+                // $update_status_as_published = mysqli_query($conn, $query);
+                // confirmQuery($update_status_as_published);
             break;    
 
             case 'draft':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$posts_id}";
-                $update_status_as_draft = mysqli_query($conn, $query);
-                confirmQuery($update_status_as_draft);
+                $my_db->query("UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$posts_id}");
+                // $update_status_as_draft = mysqli_query($conn, $query);
+                // confirmQuery($update_status_as_draft);
             break; 
 
             case 'delete':
-                $query = "DELETE FROM posts WHERE post_id = {$posts_id}";
-                $delete_post_as_bulk = mysqli_query($conn, $query);
-                confirmQuery($delete_post_as_bulk);
+                $my_db->query("DELETE FROM posts WHERE post_id = {$posts_id}");
+                // $delete_post_as_bulk = mysqli_query($conn, $query);
+                // confirmQuery($delete_post_as_bulk);
             break; 
 
             case 'Clone':
-                $query = "SELECT * FROM posts WHERE post_id = {$posts_id}";
-                $clone_posts_query = mysqli_query($conn, $query);
-                while($row = mysqli_fetch_array($clone_posts_query)){
+                $clone_posts_query = $my_db->query("SELECT * FROM posts WHERE post_id = {$posts_id}");
+                while($row = $clone_posts_query->fetch_array(MYSQLI_ASSOC)){
                     $post_creator = $row['post_creator'];
                     $post_title = $row['post_title'];
                     $post_category_id = $row['post_category_id'];
@@ -37,11 +36,7 @@ if(isset($_POST['checkBoxArray'])){
                     $post_date = $row['post_date'];
                 }
 
-                $query = "INSERT INTO posts (post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}')";
-
-                $create_clone_post_query = mysqli_query($conn, $query);
-    
-                confirmQuery($create_clone_post_query);
+                $my_db->query("INSERT INTO posts (post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_status) VALUES({$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}')");
 
             break;    
         }
@@ -102,7 +97,7 @@ $query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categorie
                     echo "<script>alert('You do not have any post!!');</script>";
                     //echo "";
                 }else{
-                while($row = mysqli_fetch_assoc($selectAllPosts)){
+                while($row = $post_row_num->fetch_assoc()){
                     $post_id = $row['post_id'];
                     $post_creator = $row['post_creator'];
                     $post_title = $row['post_title'];
@@ -132,11 +127,9 @@ $query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categorie
                     echo "<td><img width=100 src='../images/$post_image' alt='image'></td>";
                     echo "<td>$post_tags</td>";
 
-                    $query_comm = "SELECT * FROM comments WHERE comment_post_id=$post_id";
-                    $sent_comment_qu = mysqli_query($conn, $query_comm);
-                    $count_comment = mysqli_num_rows($sent_comment_qu);
+                    $count_comment = $my_db->query("SELECT * FROM comments WHERE comment_post_id=$post_id");
                     
-                    echo "<td>$count_comment</td>";
+                    echo "<td>$count_comment->num_rows</td>";
                     echo "<td>$post_date</td>";
                     echo "<td>$post_view_count</td>";
                     echo "<td><a class='btn btn-primary' href ='../post.php?p_id={$post_id}'>View</a></td>";
@@ -165,8 +158,7 @@ if(isset($_POST["delete"])){
         
         $the_post_id = $_POST["post_id"];
         echo $the_post_id;
-        $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
-        $delete_post_query = mysqli_query($conn, $query);
+        $my_db->query("DELETE FROM posts WHERE post_id = {$the_post_id}");
         Header("Location: ./posts.php");
 
     }

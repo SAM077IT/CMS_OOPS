@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">
                         Welcome to Admin
-                        <small><?php echo $_SESSION['firstname']; ?></small>
+                        <small><?php echo $_SESSION['username']; ?></small>
                     </h1>
                     <?php 
                     if(isset($_GET['source'])){
@@ -27,14 +27,6 @@
 
                         case 'edit_post';
                         include "includes/edit_posts.php";
-                        break;
-
-                        case '03';
-                        echo "This is page-03";
-                        break;
-
-                        case '04';
-                        echo "This is page-04";
                         break;
 
                         default:

@@ -30,7 +30,7 @@
                         <i class="fa fa-file-text fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'><?php echo $posts_row_count = recordCount('posts'); ?></div>
+                        <div class='huge'><?php echo $posts_row_count = $my_db->recordCount('posts'); ?></div>
                         <div>Posts</div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'><?php echo $comments_row_count = recordCount('comments'); ?></div>
+                        <div class='huge'><?php echo $comments_row_count = $my_db->recordCount('comments'); ?></div>
                         <div>Comments</div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                         <i class="fa fa-user fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'><?php echo $users_row_count = recordCount('users'); ?></div>
+                        <div class='huge'><?php echo $users_row_count = $my_db->recordCount('users'); ?></div>
                         <div> Users</div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                         <i class="fa fa-list fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'><?php echo $categories_row_count = recordCount('categories'); ?></div>
+                        <div class='huge'><?php echo $categories_row_count = $my_db->recordCount('categories'); ?></div>
                         <div>Categories</div>
                     </div>
                 </div>
@@ -112,13 +112,11 @@
     </div>
 </div>
 <?php
-$query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
-$select_all_unapproved_comments = mysqli_query($conn, $query);
-$unapproved_comments_row_count = mysqli_num_rows($select_all_unapproved_comments);
+$select_all_unapproved_comments = $my_db->query("SELECT * FROM comments WHERE comment_status = 'unapproved'");
+$unapproved_comments_row_count = $select_all_unapproved_comments->num_rows;
 
-$query = "SELECT * FROM posts WHERE post_status = 'Published'";
-$select_all_published_post = mysqli_query($conn, $query);
-$published_posts_row_count = mysqli_num_rows($select_all_published_post);
+$select_all_published_post = $my_db->query("SELECT * FROM posts WHERE post_status = 'Published'");
+$published_posts_row_count = $select_all_published_post->num_rows;
 ?>
 
 <div class="row">

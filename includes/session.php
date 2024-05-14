@@ -16,7 +16,7 @@ class Session{
     }
 
     public function isAdmin(){
-        return $this->user_role == "admin" ? true : false;     
+        return $this->user_role == "Admin" ? true : false;     
     }
 
     public function getUsername(){

@@ -3,7 +3,7 @@ if(isset($_POST["create-post"])){
 
     $post_title = escape($_POST["title"]);
     $post_category_id = escape($_POST["post-category"]);
-    $post_creator = escape($_SESSION['firstname']);
+    $post_creator = escape($_SESSION['username']);
     $post_status = escape($_POST["status"]);
 
     $post_image = $_FILES["image"]["name"];
@@ -14,18 +14,11 @@ if(isset($_POST["create-post"])){
     $post_date = date("d-m-y");
     $post_comment_count = 0;
     $post_view_count = 0;
-
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $query = "INSERT INTO posts (post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_view_count) VALUES({$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}', {$post_view_count})";
+    $my_db->query("INSERT INTO posts (post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_view_count) VALUES({$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}', {$post_view_count})");
 
-    $create_post_query = mysqli_query($conn, $query);
-    
-    confirmQuery($create_post_query);
-
-    $added_post_id = mysqli_insert_id($conn);
-
-    echo "<p class='bg-success'>Post updated. <a href='../post.php?p_id={$added_post_id}'>View Post</a> OR <a href='posts.php'>View all posts</a></p>";
+    echo "<p class='bg-success'>Post updated. <a href='../post.php?p_id={$my_db->conn->insert_id}'>View Post</a> OR <a href='posts.php'>View all posts</a></p>";
 }
 
 ?>
@@ -40,12 +33,9 @@ if(isset($_POST["create-post"])){
         <label for="post-category">Post Category</label>
         <select name="post-category" id="">
             <?php //echo $post_category_id; 
-                $query = "SELECT * FROM categories";
-                $edit_query = mysqli_query($conn, $query);
+                $edit_query = $my_db->query("SELECT * FROM categories");
 
-                confirmQuery($edit_query);
-
-                while($row = mysqli_fetch_assoc($edit_query)){
+                while($row = $edit_query->fetch_assoc()){
                     $edit_cat_id = $row['cat_id'];
                     $edit_cat_title = $row['cat_title'];
 

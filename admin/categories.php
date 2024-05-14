@@ -64,14 +64,6 @@
                                 </thead>
                                 <tbody class="cat_data">
                     <!-- gets all categories -->
-                    <?php 
-                    // if($session->isAdmin()){
-                    //     $cat_result = $my_db->query("SELECT * FROM categories");
-                    // }else{
-                    //     $cat_result = $my_db->query("SELECT * FROM categories WHERE user_id =" . $_SESSION['user_id'] . "");
-                    // }
-                    // $cat_result = $my_db->query("SELECT * FROM categories");        
-                    // $categories->getAllCategories($cat_result); ?>
 
                     <!-- detete categories -->
                     <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">

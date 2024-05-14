@@ -2,7 +2,12 @@
 <?php
     global $my_db;
     $res_arr = [];
-    $cat_result = $my_db->query("SELECT * FROM categories");                              
+    
+    if($session->isAdmin()){
+        $cat_result = $my_db->query("SELECT * FROM categories");
+    }else{
+        $cat_result = $my_db->query("SELECT * FROM categories WHERE user_id =" . $_SESSION['user_id'] . "");
+    }
     if($cat_result->num_rows > 0){
         foreach($cat_result as $row){
             array_push($res_arr, $row);

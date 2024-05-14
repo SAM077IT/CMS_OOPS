@@ -24,6 +24,21 @@ if(isset($_POST['checkBoxArray'])){
     }
 }
 ?>
+<!-- detete Comment Modal -->
+<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><strong>Warning!</strong> Are you want to delete the comment?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="comment_delete" class="btn btn-primary" data-dismiss="modal">Delete</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <form action="" method="post">
     <table class="table table-bordered table-hover">
@@ -39,6 +54,7 @@ if(isset($_POST['checkBoxArray'])){
         <div class="col-xs-4">
             <input type="submit" name="submit" class="btn btn-success" value="Apply">
         </div>
+        <div class="col-xs-4" id="updateToApproved"></div>
         <thead>
             <tr>
                 <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -55,15 +71,15 @@ if(isset($_POST['checkBoxArray'])){
                 <th>Action</th>
             </tr>
         </thead>                
-        <tbody>
+        <tbody id="comments_data">
         <?php
-        if(isAdmin()){
-            $selectAllComment = query("SELECT * FROM comments");
+        if($session->isAdmin()){
+            $selectAllComment = $my_db->query("SELECT * FROM comments");
         }
         else{
-            $selectAllComment = query("SELECT * FROM comments INNER JOIN posts ON comments.comment_post_id = posts.post_id AND posts.user_id =" . LoggedInUserID() . "");
+            $selectAllComment = $my_db->query("SELECT * FROM comments INNER JOIN posts ON comments.comment_post_id = posts.post_id AND posts.user_id =" . LoggedInUserID() . "");
         }
-            while($row = mysqli_fetch_assoc($selectAllComment)){
+            while($row = $selectAllComment->fetch_assoc()){
                 $comment_id = $row['comment_id'];
                 $comment_post_id = $row['comment_post_id'];
                 $comment_author = $row['comment_author'];
@@ -72,20 +88,6 @@ if(isset($_POST['checkBoxArray'])){
                 $comment_response_to = $row['In_response_to'];
                 $comment_status = $row['comment_status'];
                 $comment_date = $row['comment_date'];
-            echo "<tr>";
-                echo "<th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value={$comment_id}></th>";
-                echo "<td>$comment_id</td>";
-                echo "<td>$comment_post_id</td>";
-                echo "<td>$comment_author</td>";
-                echo "<td>$comment_email</td>";
-                echo "<td>$comment_comment</td>";
-                echo "<td><a href='../post.php?p_id=$comment_post_id'>$comment_response_to</a></td>";
-                echo "<td>$comment_status</td>";
-                echo "<td><a href ='comment.php?approve={$comment_id}'>Approve</a></td>";
-                echo "<td><a href ='comment.php?unapprove={$comment_id}'>Unapprove</a></td>";
-                echo "<td>$comment_date</td>";
-                echo "<td><a href ='comment.php?delete={$comment_id}'>Delete</a></td>";
-            echo "</tr>";
             }
         ?>                        
         </tbody>
@@ -93,30 +95,121 @@ if(isset($_POST['checkBoxArray'])){
 </form>
 <a href=""></a>
 <?php 
-if(isset($_GET["approve"])){
-    $the_comment_id = escape($_GET["approve"]);
 
-    $query = "UPDATE comments SET comment_status='approved' WHERE comment_id = {$the_comment_id}";
-    $approve_comment_query = mysqli_query($conn, $query);
-    header("Location: comment.php");
-}
 
-if(isset($_GET["unapprove"])){
-    $the_comment_id = escape($_GET["unapprove"]);
+// if(isset($_GET["unapprove"])){
+//     $the_comment_id = escape($_GET["unapprove"]);
     
-    $query = "UPDATE comments SET comment_status='unapproved' WHERE comment_id = {$the_comment_id}";
-    $unapprove_comment_query = mysqli_query($conn, $query);
-    header("Location: comment.php");
-}
-
-if(isset($_GET["delete"])){
-    $the_comment_id = escape($_GET["delete"]);
-    $query = "DELETE FROM comments WHERE comment_id = {$the_comment_id}";
-    $delete_comment_query = mysqli_query($conn, $query);
-
-    $query1 = "UPDATE posts SET post_comment_count = post_comment_count - 1 WHERE post_id = $comment_post_id";
-    $update_comment_count = mysqli_query($conn, $query1);
-    header("Location: comment.php");
-}
+    
+//     header("Location: comment.php");
+// }
 
 ?>
+
+
+<script>
+$(document).ready(function(){
+    getCommentsData();
+
+    //-- Delete Comments --//
+    $(document).on("click", "#delete_comment", function(e){
+        e.preventDefault();
+        let comment_id = $(this).closest('tr').find('#comment_id').text();
+        $("#delete_modal").modal("show");
+        $("#comment_delete").click(function(e){
+            $.ajax({
+                type: "POST",
+                url: "includes/update_comment_ajax.php",
+                data: {
+                    'checking_delete': true,
+                    'comment_id': comment_id
+                },
+                success: (res) =>{
+                    if(res){
+                        $("#comments_data").html('');
+                        getCommentsData();
+                            
+                    }
+                }
+            })
+        })
+    })
+
+    //-- Change the comment status To Approved --//
+    $(document).on("click", "#changeToApproved", function(e){
+        e.preventDefault();
+        let comment_id = $(this).closest('tr').find('#comment_id').text();
+        $.ajax({
+            type: "POST",
+            url: "includes/update_comment_ajax.php",
+            data: {
+                'checking_update_to_approved': true,
+                'comment_id': comment_id
+            },
+            success: (res) =>{
+                console.log(res);
+                if(res){
+                    $("#updateToApproved").append(`<div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> The comment status is updated to Approved!
+                    </div>`);
+                    $("#comments_data").html('');
+                    getCommentsData();
+                            
+                }
+            }
+        })
+    })
+
+    //-- Change the comment status To Unapproved --//
+    $(document).on("click", "#changeToUnapproved", function(e){
+        e.preventDefault();
+        let comment_id = $(this).closest('tr').find('#comment_id').text();
+        $.ajax({
+            type: "POST",
+            url: "includes/update_comment_ajax.php",
+            data: {
+                'checking_update_to_unapproved': true,
+                'comment_id': comment_id
+            },
+            success: (res) =>{
+                if(res){
+                    $("#updateToApproved").append(`<div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> The comment status is updated to Unapproved!
+                    </div>`);
+                    $("#comments_data").html('');
+                    getCommentsData();
+                            
+                }
+            }
+        })
+    })
+
+})
+function getCommentsData(){
+    $.ajax({
+        type: "GET",
+        url: "includes/view_all_comments_ajax.php",
+                success: function(res){
+                $.each(res, function(key, value){
+                $("#comments_data").append(`<tr>
+                <th><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value=${value['comment_id']}></th>
+                <td id='comment_id'>${value['comment_id']}</td>
+                <td>${value['comment_post_id']}</td>
+                <td>${value['comment_author']}</td>
+                <td>${value['comment_email']}</td>
+                <td>${value['comment_content']}</td>
+                <td><a href='../post.php?p_id=${value['comment_post_id']}'>${value['In_response_to']}</a></td>
+                <td>${value['comment_status']}</td>
+                <td><a href ='#' id='changeToApproved'>Approve</a></td>
+                <td><a href ='#' id='changeToUnapproved'>Unapprove</a></td>
+                <td>${value['comment_date']}</td>
+                <td><a href ='#' id='delete_comment'>Delete</a></td>
+            </tr>`)
+
+                    })
+                }
+            })
+}
+</script>
