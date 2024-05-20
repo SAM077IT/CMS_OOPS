@@ -1,4 +1,4 @@
-<?php  include "includes/db.php"; ?>
+<?php  //include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 <!-- Navigation -->
     
@@ -32,9 +32,9 @@ if(isset($_POST['submit'])){
     $e_body = $_POST['e_body'];
 
     if(!empty($email) && !empty($subject) && !empty($e_body)){
-        $email = mysqli_real_escape_string($conn, $email);
-        $subject = mysqli_real_escape_string($conn, $subject);
-        $e_body = mysqli_real_escape_string($conn, $e_body);
+        $email = $my_db->escape_string($email);
+        $subject = $my_db->escape_string($subject);
+        $e_body = $my_db->escape_string($e_body);
         $e_body = wordwrap($e_body, 70);
         $name = "Sam";
         $header = "From:" . $email;

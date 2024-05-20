@@ -21,4 +21,14 @@ function escape($string){
     global $my_db;
     return $my_db->escape_string(trim($string));
 }
+
+function imagePlaceholder($image = ''){
+    if(!$image){
+        return 'my_placeholder.png';
+    }
+    else{
+        return $image;
+    }
+}
+
 ?>

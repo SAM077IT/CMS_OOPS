@@ -11,28 +11,16 @@
             <div class="col-md-8">
                 <h1 class="page-header">
                     Posts
-                    <?php 
-                        $users = User::find_all_users();
-                        foreach($users as $user){
-                            echo $user->username . "<br>";
-                        }
-                        $result = User::find_user_by_id(51);
-                            echo $user->username . "<br>";
-            
-                        
-                        ?>
                     <small>By creators</small>
                 </h1>
                 <?php
-                if(isLoggedIn() && isAdmin()){
-                    $num_rows = query("SELECT * FROM posts");
-                    confirmQuery($num_rows);
+                if($session->is_signed_in() && $session->isAdmin()){
+                    $num_rows = $my_db->query("SELECT * FROM posts");
                 }
                 else{
-                    $num_rows = query("SELECT * FROM posts WHERE post_status = 'published'");
-                    confirmQuery($num_rows);;
+                    $num_rows = $my_db->query("SELECT * FROM posts WHERE post_status = 'published'");
                 }
-                $row_count = mysqli_num_rows($num_rows);
+                $row_count = $num_rows->num_rows;
                 if($row_count < 1){
                     echo "<h1 class = 'text-center'>No posts available now!</h1>";
                 }else{
@@ -47,15 +35,13 @@
                     }else{
                         $page_1 = ($page * 5) - 5;
                     }
-                    if(isLoggedIn() && isAdmin()){
-                        $result = query("SELECT * FROM posts LIMIT $page_1, 5");
-                        confirmQuery($result);
+                    if($session->is_signed_in() && $session->isAdmin()){
+                        $result = $my_db->query("SELECT * FROM posts LIMIT $page_1, 5");
                        }
                     else{
-                        $result = query("SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, 5");
-                        confirmQuery($result);
+                        $result = $my_db->query("SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, 5");
                     }
-                    while($row = mysqli_fetch_array($result)){
+                    while($row = $result->fetch_array()){
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
                         $post_author = $row['post_creator'];

@@ -1,7 +1,5 @@
-<?php include "includes/db.php" ?>
 <?php include "includes/header.php" ?>
 <body>
-
     <!-- Navigation -->
     <?php include "includes/navigation.php" ?>
 
@@ -22,13 +20,8 @@
                         $the_post_id = $_GET['p_id'];
                         $the_post_author = $_GET['author'];
                     }
-
-                    $query = "SELECT * FROM posts WHERE post_creator ='{$the_post_author}'";
-                    $select_All_Post = mysqli_query($conn, $query);
-                    if(!$select_All_Post){
-                        die("Query Failed! ". mysqli_error($conn));
-                    }
-                    while($row = mysqli_fetch_assoc($select_All_Post)){
+                    $select_All_Post = $my_db->query("SELECT * FROM posts WHERE post_creator ='{$the_post_author}'");
+                    while($row = $select_All_Post->fetch_assoc()){
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
                         $post_author = $row['post_creator'];
@@ -43,11 +36,11 @@
                     <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
-                    by <a href="author_posts.php?author=<?php echo $post_author ?>&p_id=<?php echo $post_id ?>"><?php echo $post_author ?></a>
+                    by <a href="author_posts.php?author=<?= $post_author ?>&p_id=<?= $post_id ?>"><?= $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="images/<?php echo $post_image ?>" alt="">
+                <img class="img-responsive" src="/cms_oops/images/<?php echo $post_image ?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
                 <!-- <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a> -->
@@ -62,13 +55,9 @@
                     $comment_email = $_POST['comment_email'];
                     $comment_content = $_POST['comment_content'];
 
-                    $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, 	comment_content, In_response_to, comment_status, comment_date) VALUES({$the_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', '{$post_title}','Unapproved', now())";
+                    $my_db->query("INSERT INTO comments (comment_post_id, comment_author, comment_email, 	comment_content, In_response_to, comment_status, comment_date) VALUES({$the_post_id}, '{$comment_author}', '{$comment_email}', '{$comment_content}', '{$post_title}','Unapproved', now())");
 
-                    $create_comment_query = mysqli_query($conn, $query);
-
-                    $query1 = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id";
-
-                    $update_comment_count = mysqli_query($conn, $query1);
+                    $my_db->query("UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = $the_post_id");
 
                     //header("Location: post.php?p_id=$the_post_id");
                 }

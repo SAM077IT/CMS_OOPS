@@ -77,7 +77,7 @@ if(isset($_POST['checkBoxArray'])){
             $selectAllComment = $my_db->query("SELECT * FROM comments");
         }
         else{
-            $selectAllComment = $my_db->query("SELECT * FROM comments INNER JOIN posts ON comments.comment_post_id = posts.post_id AND posts.user_id =" . LoggedInUserID() . "");
+            $selectAllComment = $my_db->query("SELECT * FROM comments INNER JOIN posts ON comments.comment_post_id = posts.post_id AND posts.user_id =" . $_SESSION['user_id'] . "");
         }
             while($row = $selectAllComment->fetch_assoc()){
                 $comment_id = $row['comment_id'];

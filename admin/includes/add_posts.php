@@ -5,7 +5,7 @@ if(isset($_POST["create-post"])){
     $post_category_id = escape($_POST["post-category"]);
     $post_creator = escape($_SESSION['username']);
     $post_status = escape($_POST["status"]);
-
+    $user_id = $_SESSION['user_id'];
     $post_image = $_FILES["image"]["name"];
     $post_image_temp = $_FILES["image"]["tmp_name"];
 
@@ -16,7 +16,7 @@ if(isset($_POST["create-post"])){
     $post_view_count = 0;
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $my_db->query("INSERT INTO posts (post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_view_count) VALUES({$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}', {$post_view_count})");
+    $my_db->query("INSERT INTO posts (user_id, post_category_id, post_title, post_creator, post_date, post_image, post_content, post_tags, post_comment_count, post_status, post_view_count) VALUES({$user_id}, {$post_category_id}, '{$post_title}', '{$post_creator}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', {$post_comment_count}, '{$post_status}', {$post_view_count})");
 
     echo "<p class='bg-success'>Post updated. <a href='../post.php?p_id={$my_db->conn->insert_id}'>View Post</a> OR <a href='posts.php'>View all posts</a></p>";
 }

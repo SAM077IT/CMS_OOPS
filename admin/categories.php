@@ -54,7 +54,7 @@
                                 </div><!-- /.modal-dialog -->
                             </div><!-- /.modal -->
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-12">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>

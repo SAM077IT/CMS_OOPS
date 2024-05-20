@@ -1,8 +1,8 @@
 <?php  //include "includes/db.php"; ?>
 <?php  include "includes/header.php"; ?>
 <!-- Navigation -->
-<?php checkIfUserIsLoggedInAndRedirect('/cms/admin'); ?>
-<?php  include "includes/navigation.php"; ?>
+<?php if($session->is_signed_in()){ redirect('/cms/admin'); }?>
+<?php include "includes/navigation.php"; ?>
 
 
 <?php
@@ -16,19 +16,13 @@ if(isset($_POST['submit'])){
     $username = escape($username);
     $email = escape($email);
     $password = escape($password);
-    $user = new user();
-    $user->username = $username;
-    $user->user_email = $email;
-    $user->user_password = $password;
-
-    $user->create();
 
     if(strlen($username) < 4 ){
         $error['username'] = "Username needs to be more then 4 character long!";
-    }elseif(userExists($username)){
+    }elseif($user->userExists($username)){
         $error['username'] = "User already exists!";
     }
-    if(emailExists($email)){
+    if($user->emailExists($email)){
         $error['email'] = "Email already exists!";
     }
     if(strlen($password) < 4 ){
@@ -42,13 +36,20 @@ if(isset($_POST['submit'])){
     }
     if(empty($error)){
         $password = password_hash("$password", PASSWORD_BCRYPT, ["cost" => 8]);
+        $user->username = $username;
+        $user->user_email = $email;
+        $user->user_password = $password;
 
-        $insert_query = "INSERT INTO users(username, user_email, user_password, user_role, reg_date) ";
-        $insert_query .="VALUES('{$username}', '{$email}', '{$password}', 'Subscriber', now())";
-        $register_user_query = mysqli_query($conn, $insert_query);
-        confirmQuery($register_user_query);
-
-        echo "<div class= text-center><h2>You are successfully registered! click <a href='index.php'>here</a> to login to CMS dashboard</h2></div>";
+        // $insert_query = "INSERT INTO users(username, user_email, user_password, user_role, reg_date) ";
+        // $insert_query .="VALUES('{$username}', '{$email}', '{$password}', 'Subscriber', now())";
+        // $register_user_query = mysqli_query($conn, $insert_query);
+        // confirmQuery($register_user_query);
+        if($user->create()){
+            echo "<div class= text-center><h2>You are successfully registered! click <a href='index.php'>here</a> to login to CMS dashboard</h2></div>";
+        }else{
+            echo "<div class= text-center><h2>Error occurred in the User class!!! </h2></div>";
+        }
+        
     }
 
     //header("Location: registration.php");

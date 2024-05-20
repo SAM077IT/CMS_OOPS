@@ -1,5 +1,5 @@
 <?php include "includes/header.php" ?>
-<?php if(!$session->isAdmin()){checkIfUserIsLoggedInAndRedirect('/cms/admin/dashboard.php');} ?>
+<?php if(!$session->isAdmin()){ redirect('/cms_oops/admin/dashboard.php');}?>
 <body>
     <div id="wrapper">
         <!-- Navigation -->

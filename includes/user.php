@@ -8,7 +8,6 @@ class user{
     public $user_email;
     public $user_role;
     protected static $db_table = "users";
-    protected static $db_table_fields = array('username', 'user_password', 'user_email');
 
     public static function find_query($sql){
         global $my_db;
@@ -37,9 +36,20 @@ class user{
         $username = $my_db->escape_string($username);
         $password = $my_db->escape_string($password);
         //AND user_password = '{$password}'
-        $sql_query = "SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}' ";
+        $sql_query = "SELECT * FROM users WHERE username = '{$username}'";
         $the_result = self::find_query($sql_query);
-        return !empty($the_result) ? array_shift($the_result) : false;
+        if(!empty($the_result)){
+            $the_user_data = array_shift($the_result);
+            if(password_verify($password,$the_user_data->user_password)){
+                return $the_user_data;
+            }
+            else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+
     }
 
     public function update_user($id){
@@ -69,30 +79,33 @@ class user{
         }
         return $the_object;
     }
-    public static function properties(){
-        $properties = array();
-        $object_properties = get_object_vars(new self);
-        foreach(self::$db_table_fields as $db_fields){
-            if(property_exists(new self, $db_fields)){
-                $properties[$db_fields] = $db_fields;
-            }
-        }
-        return $properties;
+
+    public function userExists($username){
+        global $my_db;
+        $result = $my_db->query("SELECT username FROM users WHERE username = '$username'");
+        return $result->num_rows > 0 ? true : false;
+    }
+
+    public function emailExists($email){
+        global $my_db;
+        $result = $my_db->query("SELECT user_email FROM users WHERE user_email = '$email'");
+        return $result->num_rows > 0 ? true : false;
     }
 
     public function create(){
         global $my_db;
-        $properties = self::properties();
-        $sql = "INSERT INTO " . self::$db_table . "(" . implode(",", array_keys($properties)) . ")";
-        $sql .=" VALUES ('". implode("','", array_values($properties)) ."')";
+        $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$this->username}','{$this->user_email}', '{$this->user_password}', 'Subscriber' )";
 
-        if($my_db->query($sql)){
+        if($my_db->query($query)){
             //$this->user_id = $my_db->the_insert_id();
             return true;
         }else{
             return false;
         }
     }
+
+    
 }
 
 $user = new user();

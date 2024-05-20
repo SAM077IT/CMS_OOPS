@@ -24,11 +24,10 @@
                                     <i class="fa fa-file-text fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                <?php 
-                                    $all_user_posts = query("SELECT * FROM posts WHERE user_id =" . LoggedInUserID() . "");
-                                    confirmQuery($all_user_posts);
-                                    $post_count = mysqli_num_rows($all_user_posts);
-                                echo  "<div class='huge'>{$post_count}</div>"
+                                <?php
+                                    $select_post_per_user = $my_db->query("SELECT * FROM posts WHERE user_id = {$_SESSION['user_id']}");
+                                    echo  "<div class='huge'>{$select_post_per_user->num_rows}</div>";
+                                
                                     ?>
                                     <div>Posts</div>
                                 </div>
@@ -52,9 +51,8 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <?php 
-                                        $select_user_posts_comments = query("SELECT * FROM posts INNER JOIN comments ON comments.comment_post_id = posts.post_id AND posts.user_id =" . LoggedInUserID() . "");
-                                        $comment_count = mysqli_num_rows($select_user_posts_comments);
-                                        echo  "<div class='huge'>{$comment_count}</div>"
+                                        $select_user_posts_comments = $my_db->query("SELECT * FROM posts INNER JOIN comments ON comments.comment_post_id = posts.post_id AND posts.user_id =" . $_SESSION['user_id'] . "");
+                                        echo  "<div class='huge'>{$select_user_posts_comments->num_rows}</div>"
                                     ?>
                                     <div>Comments</div>
                                 </div>
@@ -78,10 +76,8 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <?php 
-                                        $query = "SELECT * FROM categories WHERE user_id = " .LoggedInUserID(). "";
-                                        $select_all_categories = mysqli_query($conn,$query);
-                                        $category_count = mysqli_num_rows($select_all_categories);
-                                        echo  "<div class='huge'>{$category_count}</div>"
+                                        $select_cat_per_user = $my_db->query("SELECT * FROM categories WHERE user_id = {$_SESSION['user_id']}");
+                                    echo  "<div class='huge'>{$select_cat_per_user->num_rows}</div>";
                                     ?>
                                     <div>Categories</div>
                                 </div>
@@ -99,17 +95,19 @@
             </div>
             <!-------------- /.row -------------->                  
             <?php
-                $posts_query_result =query("SELECT * FROM posts WHERE post_status = 'published' AND user_id =" . LoggedInUserID() . "");
-                confirmQuery($posts_query_result);
-                $post_published_count = mysqli_num_rows($posts_query_result);
-                                                    
-                $draft_posts_query = query("SELECT * FROM posts WHERE post_status = 'draft' AND user_id =" . LoggedInUserID() . "");
-                confirmQuery($draft_posts_query);
-                $post_draft_count = mysqli_num_rows($draft_posts_query);
+                $category_count_all =  $my_db->query("SELECT * FROM categories WHERE user_id =" . $_SESSION['user_id'] . "");
+                $category_count=$category_count_all->num_rows;
+                $post_count_all = $my_db->query("SELECT * FROM posts WHERE user_id =" . $_SESSION['user_id'] . "");
+                $post_count = $post_count_all->num_rows;
+                $comment_count_all = $my_db->query("SELECT * FROM posts INNER JOIN comments ON comments.comment_post_id = posts.post_id AND posts.user_id =" . $_SESSION['user_id'] . "");
+                $comment_count = $comment_count_all->num_rows;
+                $posts_query_result =$my_db->query("SELECT * FROM posts WHERE post_status = 'published' AND user_id =" . $_SESSION['user_id'] . "");
+                $post_published_count = $posts_query_result->num_rows;                                  
+                $draft_posts_query = $my_db->query("SELECT * FROM posts WHERE post_status = 'draft' AND user_id =" . $_SESSION['user_id'] . "");
+                $post_draft_count = $draft_posts_query->num_rows;
 
-                $unapproved_comment_query = query("SELECT * FROM posts INNER JOIN comments ON comments.comment_post_id = posts.post_id AND posts.user_id =" . LoggedInUserID() . " AND comments.comment_status = 'unapproved'");
-                confirmQuery($unapproved_comment_query);
-                $unapproved_comment_count = mysqli_num_rows($unapproved_comment_query);
+                $unapproved_comment_query = $my_db->query("SELECT * FROM posts INNER JOIN comments ON comments.comment_post_id = posts.post_id AND posts.user_id =" . $_SESSION['user_id'] . " AND comments.comment_status = 'unapproved'");
+                $unapproved_comment_count = $unapproved_comment_query->num_rows;
             ?>
             <div class="row">
                                 

@@ -37,6 +37,16 @@ class Dbo extends ConfigDB{
         $select_all = $this->query("SELECT * FROM " . $table);
         return $select_all->num_rows;
     }
+
+    function getPostLikes($post_id){
+        $result = $this->query("SELECT * FROM likes WHERE post_id=$post_id");
+        echo $result->num_rows;
+    }
+
+    function userLikedThisPost($post_id='', $user_id){
+        $result = $this->query("SELECT * FROM likes WHERE user_id=$user_id AND post_id={$post_id}");
+        return $result->num_rows >= 1 ? true : false;
+    }
 }
 
 $my_db = new Dbo();

@@ -1,4 +1,4 @@
-<?php include "includes/db.php" ?>
+<?php //include "includes/db.php" ?>
 <?php include "includes/header.php" ?>
 <body>
     <!-- Navigation -->
@@ -21,11 +21,11 @@
                         else{
                             $query = "SELECT * FROM posts WHERE post_category_id = $the_post_fr_cat AND post_status = 'published'";
                         }
-                    $selectAllPost = mysqli_query($conn, $query);
-                    if(mysqli_num_rows($selectAllPost) < 1){
+                    $selectAllPost = $my_db->query($query);
+                    if($selectAllPost->num_rows < 1){
                         echo "<h1 class = 'text-center'>No posts available now!</h1>";
                     }else{
-                    while($row = mysqli_fetch_assoc($selectAllPost)){
+                    while($row = $selectAllPost->fetch_assoc()){
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
                         $post_author = $row['post_creator'];
@@ -35,14 +35,14 @@
                         ?>
                 <!-- First Blog Post -->
                 <h2>
-                    <a href="/cms/post/<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                    <a href="/cms_oops/post/<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
                 </h2>
                 <p class="lead">
-                    by <a href="/cms/author_posts?author=<?php echo $post_author; ?>&p_id=<?php echo $post_id; ?>"><?php echo $post_author ?></a>
+                    by <a href="/cms_oops/author_posts?author=<?php echo $post_author; ?>&p_id=<?php echo $post_id; ?>"><?php echo $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                 <hr>
-                <img class="img-responsive" src="/cms/images/<?php echo $post_image ?>" alt="">
+                <img class="img-responsive" src="/cms_oops/images/<?php echo $post_image ?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?></p>
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

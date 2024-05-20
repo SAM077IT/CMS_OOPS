@@ -1,4 +1,4 @@
-<?php include "includes/db.php" ?>
+<?php //include "includes/db.php" ?>
 <?php include "includes/header.php" ?>
 <body>
     <!-- Navigation -->
@@ -13,20 +13,18 @@
                     <small>By creator</small>
                 </h1>
 <?php
-                if(ifItIsMethod('post')){
                     if(isset($_POST['submit'])){
 
                     $search = $_POST['search'];
-        
-                    if(isAdmin($_SESSION['username'])){
+                    if($session->isAdmin()){
                         $search_query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
                     }
                     else{
                         $search_query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' and post_status = 'published'";
                     }
                     
-                    $select_search_Post = mysqli_query($conn, $search_query);
-                    while($row = mysqli_fetch_assoc($select_search_Post)){
+                    $select_search_Post = $my_db->query($search_query);
+                    while($row = $select_search_Post->fetch_assoc()){
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
                         $post_author = $row['post_creator'];
@@ -55,7 +53,7 @@
                 <?php } ?>
                 
                 <hr>
-                    <?php } }?>
+                    <?php } ?>
                 </ul>
 
             </div>

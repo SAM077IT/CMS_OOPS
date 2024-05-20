@@ -1,4 +1,23 @@
 .pager li .active_link {
-    background: #000 !important;
+  background: #000 !important;
+}
 
+.navbar-brand {
+  color: #fff !important;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.well {
+  box-shadow: 0 1px 1px rgb(0 0 0 / 11%), 0 2px 2px rgb(0 0 0 / 11%),
+    0 4px 4px rgb(0 0 0 / 11%), 0 6px 8px rgb(0 0 0 / 11%),
+    0 8px 16px rgb(0 0 0 / 11%) !important;
+  margin-bottom: 47px !important;
+  text-align: center;
+}
+div.well h4 {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 18px 0;
+  font-weight: bold;
 }

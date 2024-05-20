@@ -1,4 +1,5 @@
 <?php include("../../includes/db_oops.php") ?>
+<?php include("../../includes/session.php") ?>
 <?php
     global $my_db;
     $res_arr = [];

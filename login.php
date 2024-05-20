@@ -21,12 +21,7 @@
 	
 		//check to database for the user
 		$user_found = User::verify_user($username, $password);
-		// echo "<br>";echo "<br>";echo "<br>";echo "<br>";
-		// var_dump($user_found);
-		// echo "<br>";
-		// var_dump($user_found->username);
-		// echo "<br>";
-		// echo $user_found->user_role;
+
 		if($user_found){
 			$session->login($user_found);
 			redirect("/cms_oops/admin/dashboard.php");
@@ -34,7 +29,7 @@
 		}else{
 			$the_message = "Username or Password is incorrect";
 			header("Location: index.php");
-		} 
+		}
 	}else{
 		$the_message = "";
 		$username = "";

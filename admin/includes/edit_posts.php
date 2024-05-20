@@ -4,9 +4,9 @@ if(isset($_GET['p_id'])){
 $edit_post_id = escape($_GET['p_id']);
 }
 
-$query = "SELECT * FROM posts WHERE post_id = $edit_post_id";
-$selectPostsById = mysqli_query($conn, $query);
-while($row = mysqli_fetch_assoc($selectPostsById)){
+
+$selectPostsById = $my_db->query("SELECT * FROM posts WHERE post_id = $edit_post_id");
+while($row = $selectPostsById->fetch_assoc()){
     $post_id = $row['post_id'];
     $post_author = $row['post_creator'];
     $post_title = $row['post_title'];
@@ -34,9 +34,8 @@ while($row = mysqli_fetch_assoc($selectPostsById)){
 //     echo "<td><a href ='posts.php?delete={$post_id}'>Delete</a></td>";
 // echo "</tr>";
 }
-$query_get_cat = "SELECT * FROM categories WHERE cat_id = $post_category_id";
-                $select_post_cat = mysqli_query($conn, $query_get_cat);
-                while($row = mysqli_fetch_assoc($select_post_cat)){
+$select_post_cat = $my_db->query("SELECT * FROM categories WHERE cat_id = $post_category_id");;
+while($row = $select_post_cat->fetch_assoc()){
                     $cat_id_pre = $row['cat_id'];
                     $cat_title_pre = $row['cat_title'];
                 }
@@ -56,10 +55,8 @@ if(isset($_POST["update-post"])){
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
     if(empty($post_image)){
-        $query = "SELECT * FROM posts WHERE post_id = $edit_post_id";
-        $select_image = mysqli_query($conn, $query);
-        confirmQuery($select_image);
-        while($row = mysqli_fetch_array($select_image)){
+        $select_image = $my_db->query("SELECT * FROM posts WHERE post_id = $edit_post_id");
+        while($row = $select_image->fetch_array()){
             $post_image = $row['post_image'];
         }
     }
@@ -76,9 +73,7 @@ if(isset($_POST["update-post"])){
     $query .="post_view_count = '{$post_view_count}' ";
     $query .="WHERE post_id = {$post_id} ";
 
-    $update_post = mysqli_query($conn, $query);
-
-    confirmQuery($update_post);
+    $update_post = $my_db->query($query);
 
     echo "<p class='bg-success'>Post updated. <a href='../post.php?p_id={$edit_post_id}'>View Post</a> OR <a href='posts.php'>View all posts</a></p>";
 }
@@ -94,11 +89,9 @@ if(isset($_POST["update-post"])){
         <label for="post-category">Post Category</label>
         <select name="post-category" id="">
             <?php 
-                $query = "SELECT * FROM categories";
-                $edit_query = mysqli_query($conn, $query);
-                confirmQuery($edit_query);
+                $edit_query = $my_db->query("SELECT * FROM categories");
 
-                while($row = mysqli_fetch_array($edit_query)){
+                while($row = $edit_query->fetch_array()){
                     $edit_cat_id = $row['cat_id'];
                     $edit_cat_title = $row['cat_title'];
                     if($edit_cat_id == $cat_id_pre){

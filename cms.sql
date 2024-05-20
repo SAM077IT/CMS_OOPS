@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2024 at 10:37 AM
+-- Generation Time: May 20, 2024 at 01:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -69,17 +69,31 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `In_response_to`, `comment_status`, `comment_date`) VALUES
-(107, 9, 'Sam', 'dsaa@dfg.com', 'dasfgnmnm', 'Python Tutorials', 'approve', '2023-08-01'),
-(108, 9, 'Sam', 'dsaa@dfg.com', 'dasfgnmnm', 'Python Tutorials', 'approve', '2023-08-01'),
-(109, 18, 'Sam', 'dsaa@dfg.com', 'fssd', 'New Procedural PHP', 'approve', '2023-08-01'),
-(110, 18, 'Sam', 'dsaa@dfg.com', 'fssd', 'New Procedural PHP', 'approve', '2023-08-01'),
-(111, 7, 'Sam', 'dsaa@dfg.com', 'aaaa', 'New Procedural PHP', 'approve', '2023-08-01'),
-(112, 7, 'Sam', 'dsaa@dfg.com', 'sfghjhg', '', 'approve', '2023-08-01'),
-(113, 7, 'Sam', 'dsaa@dfg.com', 'sfghjhg', 'New Procedural PHP', 'approve', '2023-08-01'),
-(114, 35, 'Ron', 'ron123@gmail.com', 'dfghfgh', 'Django', 'approve', '2023-08-04'),
-(115, 34, 'Sam', 'sam247@sam.com', 'fghfgh', 'Java', 'approve', '2023-08-04'),
-(116, 51, 'Sam', 'sdfg@dfgh.com', 'rfghj', 'Demo', 'approved', '2023-08-29'),
-(117, 47, 'Rohon', 'ron123@gmail.com', 'dfghj', 'Java Tutorial', 'approve', '2023-09-04');
+(107, 9, 'Sam', 'dsaa@dfg.com', 'dasfgnmnm', 'Python Tutorials', 'Approved', '2023-08-01'),
+(108, 9, 'Sam', 'dsaa@dfg.com', 'dasfgnmnm', 'Python Tutorials', 'Approved', '2023-08-01'),
+(109, 18, 'Sam', 'dsaa@dfg.com', 'fssd', 'New Procedural PHP', 'Approved', '2023-08-01'),
+(110, 18, 'Sam', 'dsaa@dfg.com', 'fssd', 'New Procedural PHP', 'Approved', '2023-08-01'),
+(111, 7, 'Sam', 'dsaa@dfg.com', 'aaaa', 'New Procedural PHP', 'Approved', '2023-08-01'),
+(113, 7, 'Sam', 'dsaa@dfg.com', 'sfghjhg', 'New Procedural PHP', 'Approved', '2023-08-01'),
+(116, 51, 'Sam', 'sdfg@dfgh.com', 'rfghj', 'Demo', 'Approved', '2023-08-29'),
+(117, 47, 'Rohon', 'ron123@gmail.com', 'dfghj', 'Java Tutorial', 'Approved', '2023-09-04'),
+(118, 47, 'Sam', 'dsaa@dfg.com', 'dfgnfds', 'Java Tutorial', 'Approved', '2024-05-16'),
+(119, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Approved', '2024-05-16'),
+(120, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(121, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(122, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(123, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(124, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(125, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(126, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Approved', '2024-05-16'),
+(127, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(128, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(129, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(130, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(131, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(132, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(133, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16'),
+(134, 8, 'Jhon', 'sam247@sam.com', 'sdadaaada', 'JavaScript Blog', 'Unapproved', '2024-05-16');
 
 -- --------------------------------------------------------
 
@@ -101,7 +115,13 @@ INSERT INTO `likes` (`id`, `user_id`, `post_id`) VALUES
 (14, 41, 8),
 (17, 41, 7),
 (18, 48, 7),
-(19, 41, 20);
+(19, 41, 20),
+(21, 50, 58),
+(24, 69, 7),
+(25, 47, 47),
+(26, 47, 7),
+(31, 69, 23),
+(32, 69, 40);
 
 -- --------------------------------------------------------
 
@@ -130,30 +150,36 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `user_id`, `post_category_id`, `post_title`, `post_creator`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`, `post_view_count`, `likes`) VALUES
-(7, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-09-05', 'procedural_PHP_tutorial.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 14, 'Draft', 100, 12),
-(8, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-08-21', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 4, 'published', 157, 14),
-(9, 0, 22, 'Python Tutorials', 'pyMaster', '2023-08-21', 'python.png', 'This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.', 'Python, tutorials, info', 5, 'published', 50, 0),
-(16, 0, 22, 'Django', 'pyMaster', '2023-08-21', 'python-django.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\"><b><u>Django</u></b> is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</span>', 'Django, Python, Tutorials', 4, 'published', 22, 0),
+(7, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-09-05', 'procedural_PHP_tutorial.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 14, 'Draft', 179, 14),
+(8, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-08-21', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 4, 'published', 197, 14),
+(9, 0, 22, 'Python Tutorials', 'pyMaster', '2023-08-21', 'python.png', 'This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.', 'Python, tutorials, info', 5, 'published', 69, 0),
+(16, 0, 22, 'Django', 'pyMaster', '2023-08-21', 'python-django.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\"><b><u>Django</u></b> is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</span>', 'Django, Python, Tutorials', 4, 'published', 26, 0),
 (20, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-08-21', 'procedural_php.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 0, 'draft', 16, 1),
 (22, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-08-18', 'procedural_php.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 0, 'draft', 4, 0),
-(23, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-07-27', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 0, 'published', 2, 0),
+(23, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-07-27', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 0, 'published', 20, 1),
 (24, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-07-27', 'procedural_php.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 0, 'draft', 0, 0),
-(27, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-08-18', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 0, 'published', 6, 0),
+(27, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-08-18', 'javascript_Pic.png', 'New JavaScript Tutorials.', 'javascript, tutorials, info', 0, 'published', 12, 0),
 (30, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-08-21', 'procedural_php.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 3, 'draft', 6, 0),
 (38, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-08-18', 'procedural_php.jpg', 'This is the procedural PHP tutorials.                        ', 'PHP, Procedural, Tutorials', 0, 'draft', 0, 0),
 (39, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-09-05', 'javaScript.png', '<p>New JavaScript Tutorials.</p><p><br></p><p><br></p><p><br></p><p><br></p><p>        </p>', 'javascript, tutorials, info', 0, 'Draft', 1, 0),
-(40, 0, 22, 'Django', 'pyMaster', '2023-08-18', 'python-django.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\"><b><u>Django</u></b> is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</span>', 'Django, Python, Tutorials', 0, 'published', 1, 0),
-(41, 0, 22, 'Python Tutorials', 'pyMaster', '2023-08-21', 'python.png', '<p>This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.</p><p><br></p><p><br></p><p><br></p><p>        </p>', 'Python, tutorials, info', 0, 'published', 0, 0),
-(43, 41, 3, 'Adv. Java', 'Rohon', '2023-08-21', 'Java-Logo.png', '<span style=\"color: rgb(77, 81, 86); font-family: &quot;Google Sans&quot;, arial, sans-serif; font-size: 16px;\">Everything that is beyond Core Java is known as Advanced Java. This includes the application programming interfaces (APIs) that are specified in Java Enterprise Edition, as well as Servlet programming, Web Services, the API, and so on.</span>', '', 0, 'published', 3, 0),
+(40, 0, 22, 'Django', 'pyMaster', '2023-08-18', 'python-django.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\"><b><u>Django</u></b> is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</span>', 'Django, Python, Tutorials', 0, 'published', 3, 1),
+(41, 0, 22, 'Python Tutorials', 'pyMaster', '2023-08-21', 'python.png', '<p>This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.</p><p><br></p><p><br></p><p><br></p><p>        </p>', 'Python, tutorials, info', 0, 'published', 1, 0),
+(43, 41, 3, 'Adv. Java', 'Rohon', '2023-08-21', 'Java-Logo.png', '<span style=\"color: rgb(77, 81, 86); font-family: &quot;Google Sans&quot;, arial, sans-serif; font-size: 16px;\">Everything that is beyond Core Java is known as Advanced Java. This includes the application programming interfaces (APIs) that are specified in Java Enterprise Edition, as well as Servlet programming, Web Services, the API, and so on.</span>', '', 0, 'published', 4, 0),
 (44, 0, 4, 'New Procedural PHP', 'S_Smith', '2023-09-05', 'procedural_PHP_tutorial.jpg', 'This is the procedural PHP tutorials.', 'PHP, Procedural, Tutorials', 0, 'Draft', 2, 0),
 (45, 0, 22, 'Django', 'pyMaster', '2023-08-22', 'python-django.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\"><b><u>Django</u></b> is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit.</span>', 'Django, Python, Tutorials', 0, 'published', 3, 0),
 (46, 41, 3, 'Java Tutorial', 'Rohon', '2023-08-22', 'Java-Logo.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">The Java Tutorials are practical guides for programmers who want to use the&nbsp;</span><span style=\"font-weight: bold; color: rgb(95, 99, 104); font-family: arial, sans-serif;\">Java programming</span><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">&nbsp;language to create applications.</span>', 'java, tutorials, info', 0, 'published', 1, 0),
-(47, 41, 3, 'Java Tutorial', 'Rohon', '2023-08-22', 'Java-Logo.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">The Java Tutorials are practical guides for programmers who want to use the&nbsp;</span><span style=\"font-weight: bold; color: rgb(95, 99, 104); font-family: arial, sans-serif;\">Java programming</span><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">&nbsp;language to create applications.</span>', 'java, tutorials, info', 0, 'published', 3, 0),
-(48, 0, 22, 'Python Tutorials', 'pyMaster', '2023-09-05', 'python.png', '<p>This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.</p><p><br></p><p><br></p><p><br></p><p>        </p>', 'Python, tutorials, info', 0, 'Draft', 1, 0),
-(49, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-09-05', 'javaScript.png', '<p>New JavaScript Tutorials.</p><p><br></p><p><br></p><p><br></p><p><br></p><p>        </p>', 'javascript, tutorials, info', 0, 'Draft', 1, 0),
-(50, 41, 1, 'MY Bootstrap Tutorial', 'Rohon', '2023-09-05', 'bootstrap_logo-fotor.png', '<span style=\"color: rgb(77, 81, 86); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">What is Bootstrap? Bootstrap is </span><span style=\"background-color: rgba(80, 151, 255, 0.18); color: rgb(4, 12, 40); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">a free, open source front-end development framework for the creation of websites and web apps</span><span style=\"color: rgb(77, 81, 86); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">. Designed to enable responsive development of mobile-first websites, Bootstrap provides a collection of syntax for template designs.</span>', 'Bootstrap, Tutorials', 0, 'Draft', 8, 0),
-(51, 41, 32, 'Demo', 'Rohon', '2023-09-05', 'What_is_CPP.avif', 'This post is for testing...', 'Demo, Testing', 0, 'Draft', 20, 0),
-(52, 0, 1, 'BootsTrap_Tutorials', '', '2023-09-05', 'bootstrap_logo-fotor.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.</span>', 'Bootstrap, Tutorials', 0, 'Draft', 3, 0);
+(47, 41, 3, 'Java Tutorial', 'Rohon', '2023-08-22', 'Java-Logo.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">The Java Tutorials are practical guides for programmers who want to use the&nbsp;</span><span style=\"font-weight: bold; color: rgb(95, 99, 104); font-family: arial, sans-serif;\">Java programming</span><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">&nbsp;language to create applications.</span>', 'java, tutorials, info', 0, 'published', 10, 1),
+(48, 0, 22, 'Python Tutorials', 'pyMaster', '2023-09-05', 'python.png', '<p>This Python tutorial has been written for the beginners to help them understand the basic to advanced concepts of Python Programming Language.</p><p><br></p><p><br></p><p><br></p><p>        </p>', 'Python, tutorials, info', 0, 'Draft', 2, 0),
+(49, 0, 23, 'JavaScript Blog', 'S_Smith', '2023-09-05', 'javaScript.png', '<p>New JavaScript Tutorials.</p><p><br></p><p><br></p><p><br></p><p><br></p><p>        </p>', 'javascript, tutorials, info', 0, 'Draft', 2, 0),
+(50, 41, 1, 'MY Bootstrap Tutorial', 'Rohon', '2023-09-05', 'bootstrap_logo-fotor.png', '<span style=\"color: rgb(77, 81, 86); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">What is Bootstrap? Bootstrap is </span><span style=\"background-color: rgba(80, 151, 255, 0.18); color: rgb(4, 12, 40); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">a free, open source front-end development framework for the creation of websites and web apps</span><span style=\"color: rgb(77, 81, 86); font-family: \"Google Sans\", arial, sans-serif; font-size: 16px;\">. Designed to enable responsive development of mobile-first websites, Bootstrap provides a collection of syntax for template designs.</span>', 'Bootstrap, Tutorials', 0, 'Draft', 10, 0),
+(51, 41, 32, 'Demo', 'Rohon', '2023-09-05', 'What_is_CPP.avif', 'This post is for testing...', 'Demo, Testing', 0, 'published', 23, 0),
+(52, 0, 1, 'BootsTrap_Tutorials', '', '2023-09-05', 'bootstrap_logo-fotor.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.</span>', 'Bootstrap, Tutorials', 0, 'published', 6, 0),
+(53, 0, 1, 'BootsTrap_Tutorials', '', '2024-05-14', 'bootstrap_logo-fotor.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">Bootstrap is a free and open-source CSS framework directed at responsive, mobile-first front-end web development. It contains HTML, CSS and JavaScript-based design templates for typography, forms, buttons, navigation, and other interface components.</span>', 'Bootstrap, Tutorials', 0, 'published', 0, 0),
+(54, 0, 32, 'Demo', 'Rohon', '2024-05-14', 'What_is_CPP.avif', 'This post is for testing...', 'Demo, Testing', 0, 'published', 0, 0),
+(55, 0, 22, 'Algo', '', '2024-05-14', 'sro.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">In mathematics and computer science, an algorithm is a finite sequence of mathematically rigorous instructions, typically used to solve a class of specific problems or to perform a computation. Algorithms are used as specifications for performing calculations and data processing.</span>', 'Algo', 0, 'Draft', 0, 0),
+(56, 0, 22, 'Algo', 'test01', '2024-05-14', 'sro.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">In mathematics and computer science, an algorithm is a finite sequence of mathematically rigorous instructions, typically used to solve a class of specific problems or to perform a computation. Algorithms are used as specifications for performing calculations and data processing.</span>', 'Algo', 0, 'Draft', 7, 0),
+(59, 69, 85, 'C language by Soft_test', 'soft_test', '2024-05-15', 'CProgramming.png', '<span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif;\">C is a general-purpose computer programming language. It was created in the 1970s by Dennis Ritchie, and remains very widely used and influential. By design, C\'s features cleanly reflect the capabilities of the targeted CPUs.</span>', 'C, tutorials, info, demo', 0, 'Draft', 2, 0),
+(60, 69, 85, 'Demo', 'soft_test', '2024-05-15', '', '<span style=\"color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>', 'Demo', 0, 'Published', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -179,23 +205,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `firstname`, `lastname`, `user_email`, `user_image`, `user_role`, `reg_date`, `token`) VALUES
-(1, 'test01', '1234', 'test_01', 'test1', 'test@gmail.com', '', 'admin', '0000-00-00', ''),
-(37, 'sam247', '$2y$08$jlQkcDaONjGH8YdhzhjbLeKGyEDUOr8QG9fH06zSgsnkxqyWlSdsS', 'Sam', '247', 'sam247@gmail.com', '', 'Admin', '0000-00-00', ''),
+(1, 'test01', '1234', 'test_01', 'test1', 'test@gmail.com', '', 'Admin', '0000-00-00', ''),
+(37, 'sam247', '$2y$08$jlQkcDaONjGH8YdhzhjbLeKGyEDUOr8QG9fH06zSgsnkxqyWlSdsS', 'Sam', '247', 'sam247@gmail.com', '', 'Subscriber', '0000-00-00', ''),
 (39, 'kavin247', '$2y$08$iNZV0ZuFl1PUIPr/JdcsKOjHlk1p4PUBuIAZxUXX9tHlULS27HnQq', 'Kavin', '247', 'kavin247@gmail.com', '', 'Subscriber', '2023-08-04', ''),
-(41, 'rohon247', '$2y$08$pLpEQLSnjHqks8J9KklwZex6z0y7cp50EMUAnIf8l0aGGrC2DYo1y', 'Rohon', '247', 'rohon247@gmail.com', '', 'Subscriber', '2023-08-05', ''),
-(42, 'fghgfd', '$2y$08$EVmThJScPK.0wKYlcsdKPeQu54t5b4BSp6o6cx8mAoBb13gMKxyL6', 'dfgfhgg', 'dfgh', 'Sam247@gmail.com', '', 'Subscriber', '2023-08-05', ''),
-(47, 'rupa247', '$2y$08$hGwgEjoDKsSriTCWWEGF8uoE4P.LV/u/u7gpbIKIGePEY/hS8Akae', '', '', 'rupa247@gmail.com', '', 'Subscriber', '2023-08-22', ''),
-(48, 'bob247', '$2y$08$v1LzlYPaLFOuUY4AtRvkMuIpaexXH7/4OjZ.JRDOTNCjPP9Rd736e', '', '', 'bob247@gmail.com', '', 'Admin', '2023-08-22', ''),
-(49, 'nicole247', '$2y$08$jvwK0nsp..TMng66VW7SpOMRDbv751OGtqt/CvWGTLZzJbOa/tnWe', 'Nicole', '247', 'nicole247@gmail.com', '', '', '2023-08-22', ''),
-(50, 'newmoon247', '$2y$08$lE3NfE4f/Xiv9qv5vQIFFu70LpQN3tBVvAN5B6JKW7LXhG5yhtGhO', '', '', 'newmoon247@newmoon.com', '', 'Subscriber', '2023-08-22', ''),
+(41, 'rohon247', '$2y$08$pLpEQLSnjHqks8J9KklwZex6z0y7cp50EMUAnIf8l0aGGrC2DYo1y', 'Rohon', '247', 'rohon247@gmail.com', '', 'Admin', '2023-08-05', ''),
+(42, 'fghgfd', '$2y$08$EVmThJScPK.0wKYlcsdKPeQu54t5b4BSp6o6cx8mAoBb13gMKxyL6', 'dfgfhgg', 'dfgh', 'Sam247@gmail.com', '', 'Admin', '2023-08-05', ''),
+(47, 'rupa247', '$2y$08$hGwgEjoDKsSriTCWWEGF8uoE4P.LV/u/u7gpbIKIGePEY/hS8Akae', 'Rupa', '247', 'rupa247@gmail.com', '', 'Subscriber', '2023-08-22', ''),
+(48, 'bob247', '$2y$08$v1LzlYPaLFOuUY4AtRvkMuIpaexXH7/4OjZ.JRDOTNCjPP9Rd736e', '', '', 'bob247@gmail.com', '', 'Subscriber', '2023-08-22', ''),
+(49, 'nicole247', '$2y$08$jvwK0nsp..TMng66VW7SpOMRDbv751OGtqt/CvWGTLZzJbOa/tnWe', 'Nicole', '247', 'nicole247@gmail.com', '', 'Admin', '2023-08-22', ''),
+(50, 'newmoon247', '1234', 'New', 'Moon', 'newmoon247@newmoon.com', '', 'Admin', '2023-08-22', ''),
 (51, 'ron247', '$2y$08$r1Rs6BJZZtb1VhDR8AV31eC4ePUwYP4cvIFabQfQ5fltxkz1UHbcm', 'Ron', '247', 'ron247@gmail.com', '', 'Subscriber', '2023-08-25', ''),
-(52, 'samirul', '$2y$12$FlYC2SW7fJjHwPUfRPWz6erbxIjKSlVyRH6QIbmjF4GG1ADL1ovhm', '', '', 'samirul1992@gmail.com', '', 'Subscriber', '2023-08-26', ''),
+(52, 'samirul077', '$2y$12$FlYC2SW7fJjHwPUfRPWz6erbxIjKSlVyRH6QIbmjF4GG1ADL1ovhm', 'Samirul', 'Islam', 'samirul1992@gmail.com', '', 'Admin', '2023-08-26', ''),
 (53, 'Abhijit247', '$2y$08$8bS5deWkS6vJJfwhDkQKXuIGGeU0B6G9/bQP1AeZU/HH/8Ptm5.A2', '', '', 'samirul077islam@gmail.com', '', 'Subscriber', '2023-12-08', ''),
-(59, 'test02', '$2y$08$zgznmD4DlqpBsT2tpEjEzeBeHm1v77TIlpoGI9XbPtJb7HLg51NEy', '', '', 'test02@gmail.com', '', 'Subscriber', '2024-03-13', ''),
-(61, 'test03', '$2y$08$USwr/yRX6Ks/iel6ao6kAOR7EZkmGzI96YYkwq6rb1jRLN2hkP.hC', '', '', 'test03@gmail.com', '', 'Subscriber', '2024-03-13', ''),
-(63, 'test04', '$2y$08$JcyezfsNHbXsoK0YrIVuj.hBhEvJDSBa2UK.t5EOB2as.Q7U0UYPK', '', '', 'test04@gmail', '', 'Subscriber', '2024-03-13', ''),
-(64, 'username', 'user_password', '', '', 'user_email', '', '', '0000-00-00', ''),
-(65, 'test07', '$2y$08$t6d/RzoUwZM7uFxtoLozCe4BzG60OyUYpuhSXyVNckRq7MSM/XtR6', 'test', '07', 'test07@gmail.com', '', 'admin', '2024-05-03', '');
+(65, 'test07', '$2y$08$t6d/RzoUwZM7uFxtoLozCe4BzG60OyUYpuhSXyVNckRq7MSM/XtR6', 'test', '07', 'test07@gmail.com', '', 'Admin', '2024-05-03', ''),
+(66, 'test02', '$2y$08$7yAV/nbd3Ajc2jXs0SOQgu3AFX/byO86n4uCnRb6r10FOl7e7LKXK', 'Test', '02', 'test02@gmail.com', '', 'Subscriber', '2024-05-13', ''),
+(69, 'soft_test', '$2y$08$JxK/luAaMm0..wcohQ.fte1g8x7KhR.Nd5lpbV9MoVLaymbC1livW', '', '', 'soft@test.com', '', 'Subscriber', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -257,7 +281,15 @@ INSERT INTO `users_online` (`id`, `session_id`, `log_time`) VALUES
 (41, '52bqv4si3cg0hl3f33p31ltr79', 1715165152),
 (42, '1cjb0rh0l3shjfi6t8vi28smek', 1715183784),
 (43, '5ap4q8r06lpddeiohqlkedsvjk', 1715242637),
-(44, '5is0phmmi6r1jg7n5b7h69n3gp', 1715265059);
+(44, '5is0phmmi6r1jg7n5b7h69n3gp', 1715265059),
+(45, 'ol75tg9sarmm3ud68fd32kssg7', 1715352133),
+(46, '8ua5t5cm24ji3gtmg3dhuh6m9q', 1715605974),
+(47, 'uicuktvl95520o6p3h8sog2lei', 1715698379),
+(48, '5p3bdjb4ss51r3nidknm11khi2', 1715762346),
+(49, 'mrg3vojur3potdkukfm56497ao', 1715860848),
+(50, 'm4tvscui3m75ko704nrehl1a5u', 1715860218),
+(51, 'k8b9vk24h0trdmf4ivdrbebkkl', 1715860213),
+(52, 'gfqah3hobmnb135g1043bq2imt', 1715871546);
 
 --
 -- Indexes for dumped tables
@@ -307,37 +339,37 @@ ALTER TABLE `users_online`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `cat_id` int(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

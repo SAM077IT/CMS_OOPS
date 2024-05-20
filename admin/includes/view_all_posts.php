@@ -46,7 +46,7 @@ if(isset($_POST['checkBoxArray'])){
 
 <form action="" method="post">
 
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover table-sm mt-3">
 
         <div id="bulkOptionContainer" class="col-xs-4" style="padding: 0px">
             <select class="form-control" name="bulk_options" id="">
@@ -90,7 +90,7 @@ $query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categorie
             }else{
 $query = "SELECT posts.post_id, posts.post_creator, posts.post_title, posts.post_category_id, posts.post_status, posts.post_image, posts.post_tags, posts.post_date, posts.post_view_count, ";
 $query .= "categories.cat_id, categories.cat_title ";
-$query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categories.cat_id WHERE posts.post_creator='{$_SESSION['firstname']}' ORDER BY post_id DESC";
+$query .= "FROM posts LEFT JOIN categories ON posts.post_category_id = categories.cat_id WHERE posts.post_creator='{$_SESSION['username']}' ORDER BY post_id DESC";
             }
                 $post_row_num = $my_db->query($query);
                 if($post_row_num == NULL){
