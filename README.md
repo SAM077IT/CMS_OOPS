@@ -9,5 +9,7 @@ Functional Overview: This is a cms style blog post site with an advance admin pa
 Usability: This project can be use as an open source educational blog / tutorial with n number of creators / educators. 
             Can be modified to fit in travel blog site. Also can be used as a galaxry system. There are a lots of posibilities.
 
-Dependeceies: PHP 8.0+, Jquery 3.X, Bootstrap 3.5+.
+Dependeceies: PHP 8.0+, mysql server, Jquery 3.X, Bootstrap 3.5+.
+
+Deployment guide: Create a database named "cms" and import the sql (cms.sql) to the mysql server. Next, upload the project file to your preferred server.
  
